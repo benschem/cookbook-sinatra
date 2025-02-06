@@ -1,0 +1,19 @@
+<h1>Recipes</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+  <li>
+    <div>
+      <% recipe.rating.times do %>
+        ⭐️
+      <% end %>
+    </div>
+    <h2><%= recipe.name %></h2>
+    <p><%= recipe.description %></p>
+    <p><em>Prep time: </em><%= recipe.prep_time %> minutes</p>
+    <% if recipe.done? %>
+      <p>✅ Made before</small>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
