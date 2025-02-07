@@ -6,7 +6,7 @@ class Recipe
     @description = attributes[:description]
     @rating = attributes[:rating]
     @prep_time = attributes[:prep_time]
-    @done = attributes[:done]
+    @done = attributes[:done] || false
   end
 
   def done?

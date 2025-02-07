@@ -24,29 +24,32 @@ get "/recipes" do
 end
 
 get "/recipes/new" do
-  erb :new
+  erb :new, layout: :layout
 end
 
-post "/recipes/create" do
-  name = params[:name]
-  description = params[:description]
-  rating = params[:rating]
-  prep_time = params[:prep_time]
-  new_recipe = Recipe.new(name, description, rating, prep_time)
+post "/recipes" do
+  new_recipe = Recipe.new(
+      {
+        name: params["recipe"]["name"],
+        description: params["recipe"]["description"],
+        rating: params["recipe"]["rating"].to_i,
+        prep_time: params["recipe"]["prep_time"].to_i
+      }
+    )
   COOKBOOK.add_recipe(new_recipe)
-  erb :index
+  redirect to('/recipes')
 end
 
 post "/recipes/:recipe/update" do
-  @recipe = Recipe.find(params[:recipe])
+  @recipe = Recipe.find(params["recipe"])
   cookbook.mark_as_done(@recipe)
-  erb :show
+  redirect to("/recipes/#{params["recipe"]}")
 end
 
 post "/recipes/:recipe/delete" do
   recipe = Recipe.find(params[:recipe])
   cookbook.delete_recipe(recipe)
-  erb :index
+  redirect to('/recipes')
 end
 
 # get "/import" do

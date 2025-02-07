@@ -1,0 +1,23 @@
+<h1>Add a new recipe!</h1>
+
+<form action="/recipes" method="post" class="form">
+  <div class="input-field col s6">
+    <label for="name">Name</label>
+    <input required id="name" name="recipe[name]" type="text">
+  </div>
+  <div class="input-field col s6">
+    <label for="description">Description</label>
+    <input required id="description" name="recipe[description]" type="text">
+  </div>
+  <div class="input-field col s6">
+    <label for="prep_time">Prep time</label>
+    <input required id="prep_time" name="recipe[prep_time]" type="text">
+  </div>
+  <div class="input-field col s6">
+    <label for="rating">Rating</label>
+    <input required id="rating" name="recipe[rating]" type="text">
+  </div>
+  <div class="input-field col s6">
+    <input type="submit" value="Add recipe" />
+  </div>
+</form>
